@@ -4,15 +4,35 @@ from Networksecurity.Logging.logger import logging
 import sys
 from Networksecurity.entity.config_entity import DataIngestionConfig
 from Networksecurity.entity.config_entity import TrainingPipelineConfig
+from Networksecurity.Components.data_validation import DataValidation,DataValidationConfig
 
 
 if __name__ == "__main__":
     try:
-        trainingpipelineconfig=TrainingPipelineConfig()
+        # Create ONE shared config with ONE timestamp for the whole run
+        trainingpipelineconfig = TrainingPipelineConfig()
+        
+        # 1. Data Ingestion
         dataingestionconfig = DataIngestionConfig(trainingpipelineconfig)
         dataingestion = DataIngestion(dataingestionconfig)
-        logging.info('intitate the data ingestion')
-        dataingestionartifact =dataingestion.initiate_data_ingestion()
+        logging.info('Initiate the data ingestion')
+        dataingestionartifact = dataingestion.initiate_data_ingestion()
+        logging.info("Data Initiation Completed")
+        
+        # 2. Data Validation
+        data_validation_config = DataValidationConfig(trainingpipelineconfig)
+        
+        # FIX: Ensure order matches __init__(self, config, artifact)
+        data_validation = DataValidation(
+            data_validation_config=data_validation_config,
+            data_ingestion_artifact=dataingestionartifact
+        )
+        
+        logging.info("Initiate the data validation")
         print(dataingestionartifact)
-    except Exception as e :
-        raise NetworkSecurityException(e,sys)
+        data_validation_artifact = data_validation.initiate_data_validation()
+        logging.info("Data validation completed")
+        print(data_validation_artifact)
+        
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)

@@ -1,8 +1,11 @@
 python-dotenv
-pandas
 numpy
+pandas
 certifi
+pymal
 pymongo[srv]
 pymongo
 scikit-learn
+dill
+
 #-e . 
