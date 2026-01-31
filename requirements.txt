@@ -6,6 +6,5 @@ pymal
 pymongo[srv]
 pymongo
 scikit-learn
-dill
 
 #-e . 

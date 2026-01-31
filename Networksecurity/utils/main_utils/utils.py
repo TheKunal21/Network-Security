@@ -39,3 +39,37 @@ def write_yaml_file(file_path:str,content:dict,replace:bool = False)->None:
             
     except Exception as e:
         raise NetworkSecurityException(e, sys)
+    
+
+def save_numpy_array_data(file_path:str,array:np.array):
+    
+    """
+    file_path : str : path to file 
+    array : np.array : numpy array data to be saved 
+    return : None 
+    """
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path,'wb') as file_obj:
+            np.save(file_obj,array)
+        logging.info(f"Numpy array saved successfully at {file_path}")
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)
+    
+    
+def save_object(file_path:str,obj:object)->None:
+    """
+    file_path : str : path to file 
+    obj : object : object to be saved 
+    return : None 
+    """
+    try:
+        logging.info(f"Entered the save_object method of utils class")
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path,'wb') as file_obj:
+            pickle.dump(obj,file_obj)
+        logging.info(f"Object saved successfully at {file_path} & Exited the save_object of MainUtils class")
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)
