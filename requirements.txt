@@ -6,5 +6,5 @@ pymal
 pymongo[srv]
 pymongo
 scikit-learn
-
+mlflow
 #-e . 
