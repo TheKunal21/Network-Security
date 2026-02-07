@@ -7,4 +7,8 @@ pymongo[srv]
 pymongo
 scikit-learn
 mlflow
+dagshub
+fastapi
+uvicorn
+python-multipart
 #-e . 

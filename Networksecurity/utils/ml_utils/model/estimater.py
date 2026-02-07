@@ -15,8 +15,7 @@ class NetworkModel:
         except Exception as e:
             raise NetworkSecurityException(e, sys)
 
-
-def predict(self,x):
+    def predict(self,x):
         try:
             logging.info("Prediction started")
             x_transform = self.preprocessor.transform(x)
