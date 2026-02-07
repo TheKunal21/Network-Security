@@ -22,9 +22,9 @@ from uvicorn import run as app_run
 from fastapi.responses import Response
 from starlette.responses import RedirectResponse
 import pandas as pd 
-from Networksecurity.utils.main_utils.utils import save_numpy_array_data,load_numpy_array_data
-from Networksecurity.utils.main_utils.utils import save_object,load_object
 
+from Networksecurity.utils.main_utils.utils import load_object
+from uvicorn import run as app_run
 
 client = pymongo.MongoClient(mongo_db_url,tlsCAFile=ca)
 
