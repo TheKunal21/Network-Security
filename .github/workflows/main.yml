@@ -30,10 +30,8 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v3
 
-        - name: Install utilities
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y awscli
+        - name: Check AWS CLI
+          run: aws --version
 
         - name: Configure AWS credentials
           uses: aws-actions/configure-aws-credentials@v1
