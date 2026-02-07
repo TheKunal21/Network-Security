@@ -88,12 +88,10 @@ jobs:
           run: |
             docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-        # - name : stop and remove container if running 
-        #   run: |
-        #     if [ $(docker ps -q -f name=network-security-app) ]; then
-        #       docker stop network-security-app
-        #       docker rm network-security-app
-        #     fi    
+        - name: Stop and remove container if running
+          run: |
+            docker stop networksecurity || true
+            docker rm networksecurity || true
 
         - name: Run Docker Image to serve users 
           env:
@@ -101,7 +99,7 @@ jobs:
             ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORTY_NAME }}
             IMAGE_TAG: latest
           run: |
-            docker run -d -p 8080:8080 --ipc="host" --name networksecurity \
+            docker run -d -p 8000:8000 --ipc="host" --name networksecurity \
               -e "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" \
               -e "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
               $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
