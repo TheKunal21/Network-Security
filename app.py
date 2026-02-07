@@ -11,7 +11,7 @@ from Networksecurity.Logging.logger import logging
 load_dotenv()
 
 mongo_db_url = os.getenv("MONGO_DB_URL")
-print(mongo_db_url)
+#print(mongo_db_url)
 
 import pymongo
 from Networksecurity.pipeline.training_pipeline import TrainingPipeline
