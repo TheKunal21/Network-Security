@@ -21,7 +21,17 @@ from sklearn.ensemble import (
 import mlflow
 
 import dagshub
-dagshub.init(repo_owner='TheKunal21', repo_name='Network-Security', mlflow=True)
+
+
+def _init_dagshub() -> None:
+    token = os.getenv("DAGSHUB_TOKEN")
+    if not token:
+        logging.warning("DAGSHUB_TOKEN not set; skipping dagshub init.")
+        return
+    try:
+        dagshub.init(repo_owner="TheKunal21", repo_name="Network-Security", mlflow=True)
+    except Exception as e:
+        logging.warning(f"Dagshub init failed; continuing without it: {e}")
 
 
 
@@ -37,6 +47,7 @@ class ModelTrainer:
             raise NetworkSecurityException(e, sys)
     
     def track_mlflow(self,best_model,classificationmetric):
+        _init_dagshub()
         with mlflow.start_run():
             f1_score = classificationmetric.f1_score
             precision_score = classificationmetric.precision_score

@@ -14,7 +14,6 @@ mongo_db_url = os.getenv("MONGO_DB_URL")
 #print(mongo_db_url)
 
 import pymongo
-from Networksecurity.pipeline.training_pipeline import TrainingPipeline
 from Networksecurity.utils.ml_utils.model.estimater import NetworkModel
 from fastapi.middleware.cors import CORSMiddleware
 from  fastapi import FastAPI , File , UploadFile , Request
@@ -50,6 +49,7 @@ async def index():
 @app.get("/train")
 async def train():
     try:
+        from Networksecurity.pipeline.training_pipeline import TrainingPipeline
         training_pipeline = TrainingPipeline()
         training_pipeline.run_pipeline()
         return Response(content="Training pipeline executed successfully", media_type="text/plain")

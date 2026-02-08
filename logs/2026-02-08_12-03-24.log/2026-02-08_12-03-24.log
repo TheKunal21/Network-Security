@@ -1,0 +1,6 @@
+[2026-02-08 12:03:43,566 ] INFO - _client - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-02-08 12:03:43,576 ] INFO - helpers - Accessing as TheKunal21
+[2026-02-08 12:03:46,108 ] INFO - _client - HTTP Request: GET https://dagshub.com/api/v1/repos/TheKunal21/Network-Security "HTTP/1.1 200 OK"
+[2026-02-08 12:03:47,543 ] INFO - _client - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-02-08 12:03:47,548 ] INFO - helpers - Initialized MLflow to track repo "TheKunal21/Network-Security"
+[2026-02-08 12:03:47,550 ] INFO - helpers - Repository TheKunal21/Network-Security initialized!
